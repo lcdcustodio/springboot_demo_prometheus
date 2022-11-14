@@ -60,6 +60,12 @@ Let's configure Prometheus, and more precisely the scrape interval, the targets,
 
 As you can see, we have a scrape_configs root key where we can define a list of jobs and specify the URL, metrics path, and the interval. If you'd like to read more about Prometheus configurations, feel free to visit the [official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
 
+**Note:** Since we are going to use Docker to run Prometheus, Docker network that won't understand localhostas you might expect. Since our app is going to run on localhost, and for the Docker container, localhost means its own network, we have to specify our system IP in place of it.
+
+So instead of using locahost:8080, 192.168.0.20:8080 is used where 192.168.0.20 is my PC IP at the moment.
+
+To check your system IP you can run ipconfig or ifconfig in your terminal, depending upon your OS.
+
 ## Grafana
 
 Grafana is a visualization layer that offers a rich UI where you can build up custom graphs quickly and create a dashboard out of many graphs faster. You can also import many community built dashboards for free and get going.
@@ -105,7 +111,21 @@ All of metrics, including prometheus, are exposed by:
     http://localhost:8080/actuator/prometheus
 ```    
 
+Now, we can run Prometheus using the Docker command:
 
+
+```sh
+    docker run -d -p 9090:9090 -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+```    
+
+
+To see Prometheus dashboard, navigate your browser to **http://localhost:9090:**
+
+![Alt text](/pictures/prometheus.png "Setup")
+
+To check if Prometheus is actually listening to the Spring app, you can go to the /targets endpoint:
+
+![Alt text](/pictures/prometheus_target.png "Setup")
 
 Prometheus:
 
