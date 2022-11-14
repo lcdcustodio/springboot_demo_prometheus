@@ -1,18 +1,17 @@
 Springboot Demo with Prometheus
-===========
+===========================
+--------------
 
-------------
+1- Intro
+===========================
 Monitoring an application's health and metrics helps us manage it better, notice unoptimized behavior and get closer to its performance. In this article, we'll cover how to monitor Spring Boot web applications. We will be using three projects to achieve this:
 
-- Spring Boot Actuator: a sub-project of the Spring Boot Framework. It uses HTTP endpoints to expose health and monitoring metrics from applications
-- Micrometer: Exposes the metrics from our application
-- Prometheus: Stores our metric data
-- Grafana: Visualizes our data in graphs
+- **Spring Boot Actuator:** a sub-project of the Spring Boot Framework. It uses HTTP endpoints to expose health and monitoring metrics from applications
+- **Micrometer:** Exposes the metrics from our application
+- **Prometheus:** Stores our metric data
+- **Grafana:** Visualizes our data in graphs
 
-------------
-
-Spring Boot Actuator
-===========================
+## Spring Boot Actuator
 
 To use Actuator in your application, you need to enable the spring-boot-actuator dependency in pom.xml:
 
@@ -35,10 +34,8 @@ Tools like Prometheus, Netflix Atlas, and Grafana are more commonly used for the
 
 Each of these tools has its own set of data formats and converting the /metrics data for each one would be a pain. To avoid converting them ourselves, we need a vendor-neutral data provider, such as Micrometer.
 
-------------
+## Micrometer
 
-Micrometer
-===========================
 To solve this problem of being a vendor-neutral data provider, Micrometer came to be. It exposes Actuator metrics to external monitoring systems such as Prometheus, Netflix Atlas, AWS Cloudwatch, and many more.
 
 Micrometer automatically exposes /actuator/metrics data into something your monitoring system can understand. All you need to do is include that vendor-specific micrometer dependency in your application.
@@ -51,8 +48,11 @@ Micrometer is a separate open-sourced project and is not in the Spring ecosystem
         <artifactId>micrometer-registry-prometheus</artifactId>
     </dependency>
 ```
+This will generate a new endpoint - /actuator/prometheus. Opening it, you will see data formatted specific for **Prometheus**.
 
+## Prometheus
 
+Prometheus is a time-series database that stores our metric data by pulling it (using a built-in data scraper) periodically over HTTP. The intervals between pulls can be configured, of course, and we have to provide the URL to pull from. It also has a simple user interface where we can visualize/query on all of the collected metrics.
 
 Prometheus:
 - mvn clean install
