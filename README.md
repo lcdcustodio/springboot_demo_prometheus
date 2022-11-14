@@ -125,7 +125,7 @@ To see Prometheus dashboard, navigate your browser to **http://localhost:9090:**
 
 To check if Prometheus is actually listening to the Spring app, you can go to the /targets endpoint:
 
-![Alt text](/pictures/prometheus_target.png "Setup")
+<kbd>![Alt text](/pictures/prometheus_target.png "Setup")</kbd>
 
 Prometheus:
 
