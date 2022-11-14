@@ -54,6 +54,12 @@ This will generate a new endpoint - /actuator/prometheus. Opening it, you will s
 
 Prometheus is a time-series database that stores our metric data by pulling it (using a built-in data scraper) periodically over HTTP. The intervals between pulls can be configured, of course, and we have to provide the URL to pull from. It also has a simple user interface where we can visualize/query on all of the collected metrics.
 
+Let's configure Prometheus, and more precisely the scrape interval, the targets, etc. To do that, we'll be using the prometheus.yml file:
+
+![Alt text](/pictures/prometheus)yaml.png "Setup")
+
+As you can see, we have a scrape_configs root key where we can define a list of jobs and specify the URL, metrics path, and the interval. If you'd like to read more about Prometheus configurations, feel free to visit the [official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
+
 ## Grafana
 
 Grafana is a visualization layer that offers a rich UI where you can build up custom graphs quickly and create a dashboard out of many graphs faster. You can also import many community built dashboards for free and get going.
@@ -100,9 +106,8 @@ All of metrics, including prometheus, are exposed by:
 ```    
 
 
+
 Prometheus:
-- docker build -t springboot_demo_prometheus .
-- docker run -p 8080:8080 springboot_demo_prometheus
 
 - https://stackabuse.com/monitoring-spring-boot-apps-with-micrometer-prometheus-and-grafana/
 - docker run -d -p 9090:9090 -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
