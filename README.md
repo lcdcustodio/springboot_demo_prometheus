@@ -54,8 +54,39 @@ This will generate a new endpoint - /actuator/prometheus. Opening it, you will s
 
 Prometheus is a time-series database that stores our metric data by pulling it (using a built-in data scraper) periodically over HTTP. The intervals between pulls can be configured, of course, and we have to provide the URL to pull from. It also has a simple user interface where we can visualize/query on all of the collected metrics.
 
+## Grafana
+
+Grafana is a visualization layer that offers a rich UI where you can build up custom graphs quickly and create a dashboard out of many graphs faster. You can also import many community built dashboards for free and get going.
+
+Grafana can pull data from various data sources like Prometheus, Elasticsearch, InfluxDB, etc. It also allows you to set rule-based alerts, which then can notify you over Slack, Email, Hipchat, and similar.
+
+
+------------
+
+2- Installation
+===========================
+
+First of all, let’s clone the repository and build the application:
+
+```sh
+    git clone https://github.com/lcdcustodio/springboot_demo_prometheus.git
+    cd springboot_demo_prometheus
+    mvn clean install
+```    
+
+Once the Maven build is finished, the deployment archive has been created in target folder. Now, we be able to create image and run the container:  
+
+```
+    # Create container
+    docker build -t springboot_demo_prometheus .
+    # Run container
+    docker run -p 8080:8080 springboot_demo_prometheus    
+
+```    
+
+
+
 Prometheus:
-- mvn clean install
 - docker build -t springboot_demo_prometheus .
 - docker run -p 8080:8080 springboot_demo_prometheus
 
