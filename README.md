@@ -1,6 +1,13 @@
 Springboot Demo with Prometheus
 ===========
 
+------------
+Monitoring an application's health and metrics helps us manage it better, notice unoptimized behavior and get closer to its performance. In this article, we'll cover how to monitor Spring Boot web applications. We will be using three projects to achieve this:
+
+- Micrometer: Exposes the metrics from our application
+- Prometheus: Stores our metric data
+- Grafana: Visualizes our data in graphs
+
 
 Prometheus:
 - mvn clean install
