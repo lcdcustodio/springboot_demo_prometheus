@@ -76,14 +76,28 @@ First of all, let’s clone the repository and build the application:
 
 Once the Maven build is finished, the deployment archive has been created in target folder. Now, we be able to create image and run the container:  
 
-```
+```sh
     # Create container
     docker build -t springboot_demo_prometheus .
-    # Run container
-    docker run -p 8080:8080 springboot_demo_prometheus    
+```
 
+```sh    
+    # Run container
+    docker run -p 8080:8080 springboot_demo_prometheus
 ```    
 
+We can see the application up and running at:
+
+```sh
+    http://localhost:8080/hello-world
+```    
+
+All of metrics, including prometheus, are exposed by:
+
+```sh
+    http://localhost:8080/actuator
+    http://localhost:8080/actuator/prometheus
+```    
 
 
 Prometheus:
