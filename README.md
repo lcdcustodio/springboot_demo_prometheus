@@ -4,12 +4,15 @@ Springboot Demo with Prometheus
 
 1- Intro
 ===========================
-Monitoring an application's health and metrics helps us manage it better, notice unoptimized behavior and get closer to its performance. In this article, we'll cover how to monitor Spring Boot web applications. We will be using three projects to achieve this:
+Monitoring an application's health and metrics helps us manage it better, notice unoptimized behavior and get closer to its performance. In this Demo, we'll cover how to monitor Spring Boot web applications. We will be using four projects to achieve this:
 
 - **Spring Boot Actuator:** a sub-project of the Spring Boot Framework. It uses HTTP endpoints to expose health and monitoring metrics from applications
 - **Micrometer:** Exposes the metrics from our application
 - **Prometheus:** Stores our metric data
 - **Grafana:** Visualizes our data in graphs
+
+
+
 
 ## Spring Boot Actuator
 
@@ -147,10 +150,17 @@ Since Grafana works with many data sources, we need to define which one we're re
 
 <kbd>![Alt text](/pictures/grafana_ds_2.png "Grafana Prometheus Ready")</kbd>
 
+As previously said, Grafana has a ton of pre-built [dashboards](https://grafana.com/grafana/dashboards/). For Spring Boot projects, the [JVM dashboard](https://grafana.com/grafana/dashboards/4701-jvm-micrometer/) is popular:
+
+<kbd>![Alt text](/pictures/grafana_import.png "Grafana Import")</kbd>
+
+Input the URL for the dashboard, select "Already created Prometheus datasource" and then click Import:
+
+<kbd>![Alt text](/pictures/grafana_outcome.png "Grafana Outcomes")</kbd>
+
+---------
+
+In this Demo, we used Micrometer to reformat the metrics data provided by Spring Boot Actuator and expose it in a new endpoint. This data was then regularly pulled and stored by Prometheus, which is a time-series database. Ultimately, we've used Grafana to visualize this information with a user-friendly dashboard.
+
+
 [Reference](https://stackabuse.com/monitoring-spring-boot-apps-with-micrometer-prometheus-and-grafana/)
-
-Prometheus:
-
-- https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
-
-
