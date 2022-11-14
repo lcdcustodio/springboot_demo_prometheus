@@ -17,12 +17,16 @@ Spring Boot Actuator
 To use Actuator in your application, you need to enable the spring-boot-actuator dependency in pom.xml:
 
 ```
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-actuator</artifactId>
-</dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
 ```
 
+Dependency provides production-ready endpoints that you can use for your application. These endpoints (/health, /metrics, /mappings, etc.) are common prefix of /actuator and are, by default, protected.Expose them individually, or all at once, by adding the following properties in application.properties:
+```
+    management.endpoints.web.exposure.include=*
+```
 
 Prometheus:
 - mvn clean install
