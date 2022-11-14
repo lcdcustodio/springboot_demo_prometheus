@@ -23,10 +23,28 @@ To use Actuator in your application, you need to enable the spring-boot-actuator
     </dependency>
 ```
 
-Dependency provides production-ready endpoints that you can use for your application. These endpoints (/health, /metrics, /mappings, etc.) are common prefix of /actuator and are, by default, protected.Expose them individually, or all at once, by adding the following properties in application.properties:
+Dependency provides production-ready endpoints that you can use for your application. These endpoints (/health, /metrics, /mappings, etc.) are common prefix of /actuator and are, by default, protected. Expose them individually, or all at once, by adding the following properties in application.properties:
 ```
     management.endpoints.web.exposure.include=*
 ```
+Spring Boot Actuator shares a lot of information about your application, but it's not very user-friendly. It can be integrated with Spring Boot Admin for visualization, but it has its limitations and is less popular. 
+Tools like Prometheus, Netflix Atlas, and Grafana are more commonly used for the monitoring and visualization and are language/framework-independent.
+Each of these tools has its own set of data formats and converting the /metrics data for each one would be a pain. To avoid converting them ourselves, we need a vendor-neutral data provider, such as Micrometer.
+------------
+
+Micrometer
+===========================
+To solve this problem of being a vendor-neutral data provider, Micrometer came to be. It exposes Actuator metrics to external monitoring systems such as Prometheus, Netflix Atlas, AWS Cloudwatch, and many more.
+Micrometer automatically exposes /actuator/metrics data into something your monitoring system can understand. All you need to do is include that vendor-specific micrometer dependency in your application.
+Micrometer is a separate open-sourced project and is not in the Spring ecosystem, so we have to explicitly add it as a dependency. Since we will be using Prometheus, let's add it's specific dependency in our pom.xml:
+```
+    <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+```
+
+
 
 Prometheus:
 - mvn clean install
