@@ -56,7 +56,7 @@ Prometheus is a time-series database that stores our metric data by pulling it (
 
 Let's configure Prometheus, and more precisely the scrape interval, the targets, etc. To do that, we'll be using the prometheus.yml file:
 
-![Alt text](/pictures/prometheus)yaml.png "Setup")
+![Alt text](/pictures/prometheus_yaml.png "Setup")
 
 As you can see, we have a scrape_configs root key where we can define a list of jobs and specify the URL, metrics path, and the interval. If you'd like to read more about Prometheus configurations, feel free to visit the [official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
 
