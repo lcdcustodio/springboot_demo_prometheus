@@ -56,7 +56,7 @@ Prometheus is a time-series database that stores our metric data by pulling it (
 
 Let's configure Prometheus, and more precisely the scrape interval, the targets, etc. To do that, we'll be using the prometheus.yml file:
 
-![Alt text](/pictures/prometheus_yaml.png "Setup")
+![Alt text](/pictures/prometheus_yaml.png "Prometheus yaml file")
 
 As you can see, we have a scrape_configs root key where we can define a list of jobs and specify the URL, metrics path, and the interval. If you'd like to read more about Prometheus configurations, feel free to visit the [official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
 
@@ -121,17 +121,29 @@ Now, we can run Prometheus using the Docker command:
 
 To see Prometheus dashboard, navigate your browser to **http://localhost:9090:**
 
-![Alt text](/pictures/prometheus.png "Setup")
+<kbd>![Alt text](/pictures/prometheus.png "Welcome Prometheus")</kbd>
 
 To check if Prometheus is actually listening to the Spring app, you can go to the /targets endpoint:
 
-<kbd>![Alt text](/pictures/prometheus_target.png "Setup")</kbd>
+<kbd>![Alt text](/pictures/prometheus_target.png "Prometheus Target")</kbd>
+
+
+Let's start  by running **Grafana** using Docker:
+
+
+```sh
+    docker run -d -p 3000:3000 grafana/grafana
+```    
+
+If you visit **http://localhost:3000**, you will be redirected to a login page. The default username is admin and the default password is admin. You can change these in the next step, which is highly recommended:
+
+<kbd>![Alt text](/pictures/grafana.png "Grafana")</kbd>
+
+
 
 Prometheus:
 
 - https://stackabuse.com/monitoring-spring-boot-apps-with-micrometer-prometheus-and-grafana/
-- docker run -d -p 9090:9090 -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
-- docker run -d -p 3000:3000 grafana/grafana
 - https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
 
 ------------
